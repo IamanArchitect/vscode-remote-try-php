@@ -4,20 +4,20 @@ include "parameters.php";
 
 $persons_in_store = 0;
 
-// GET /filiale/anzahl
-if ($_SERVER['REQUEST_METHOD'] === 'GET' && $_SERVER['PATH_INFO'] === '/filiale/anzahl') {
-    echo json_encode(array('anzahl' => $persons_in_store));
+// GET /counter/counterId
+if ($_SERVER['REQUEST_METHOD'] === 'GET' && $_SERVER['PATH_INFO'] === '/counter/counterId') {
+    echo json_encode(array('counterId' => $persons_in_store));
 }
 
-// POST /filiale/erhoehen
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && $_SERVER['PATH_INFO'] === '/filiale/erhoehen') {
+// POST /counter/increment
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && $_SERVER['PATH_INFO'] === '/counter/increment') {
     $persons_in_store++;
-    echo json_encode(array('anzahl' => $persons_in_store));
+    echo json_encode(array('counterId' => $persons_in_store));
 }
 
-// POST /filiale/verringern
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && $_SERVER['PATH_INFO'] === '/filiale/verringern') {
+// POST /counter/decrement
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && $_SERVER['PATH_INFO'] === '/counter/decrement') {
     $persons_in_store--;
-    echo json_encode(array('anzahl' => $persons_in_store));
+    echo json_encode(array('counterId' => $persons_in_store));
 }
 ?>
