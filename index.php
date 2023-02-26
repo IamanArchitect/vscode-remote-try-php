@@ -2,22 +2,22 @@
 
 include "parameters.php";
 
-$persons_in_store = 0;
+// Setzt die Startanzahl auf 0.
+$count_persons = 0;
 
-// GET /counter/counterId
-if ($_SERVER['REQUEST_METHOD'] === 'GET' && $_SERVER['REQUEST_METHOD'] === '/counter/counterId') {
-    echo json_encode(array('counterId' => $persons_in_store));
+// Wenn der Benutzer eine "increment" Anfrage sendet, erhöht er die Anzahl um 1.
+if(isset($_GET['action']) && $_GET['action'] == 'increment') {
+    $count_persons++;
 }
 
-// POST /counter/increment
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && $_SERVER['REQUEST_METHOD'] === '/counter/increment') {
-    $persons_in_store++;
-    echo json_encode(array('counterId' => $persons_in_store));
+// Wenn der Benutzer eine "decrement" Anfrage sendet, verringert er die Anzahl um 1, aber nur wenn die Anzahl größer als 0 ist.
+if(isset($_GET['action']) && $_GET['action'] == 'decrement' && $count_persons > 0) {
+    $count_persons--;
 }
 
-// POST /counter/decrement
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && $_SERVER['REQUEST_METHOD'] === '/counter/decrement') {
-    $persons_in_store--;
-    echo json_encode(array('counterId' => $persons_in_store));
+// Wenn der Benutzer eine "get" Anfrage sendet, gibt er die aktuelle Anzahl zurück.
+if(isset($_GET['action']) && $_GET['action'] == 'get') {
+  echo $count_persons;
+  exit;
 }
 ?>
